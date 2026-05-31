@@ -213,6 +213,9 @@ stab_mode = True
 prev_stab_mode = True
 
 frame_count = 0
+
+idx_for_icon = 1
+idx_for_stab = 2
 while True:
     try:
         time.sleep(0.020) # 20 fps
@@ -300,11 +303,11 @@ while True:
 
         if current > last_value + 1000:
             cc.send(ConsumerControlCode.VOLUME_INCREMENT)
-            print("up")
+
 
         elif current < last_value - 1000:
             cc.send(ConsumerControlCode.VOLUME_DECREMENT)
-            print("down")
+
 
         last_value = current
 
@@ -321,17 +324,19 @@ while True:
     if pan_mode != prev_mode: # if a change in pan mode occurred
         prev_mode = pan_mode # updating previous mode
         if (pan_mode): #if its panning
-            display_pan() 
-            splash.pop(1) # removing the previously displayed icon
-        else:
-            display_rotate() 
-            splash.pop(1) # removing previously displayed icon
         
+            while (len(splash) > 1):
+                splash.pop()
+            display_pan()
+            display_stabilized(stab_mode)
+        else: 
+            while(len(splash) > 1):
+                splash.pop()
+            display_rotate()
+            display_stabilized(stab_mode)
     if stab_mode != prev_stab_mode:
         prev_stab_mode = stab_mode
         display_stabilized(stab_mode)
-        print("displaying stab mode now")
         splash.pop(2)
-        print(len(splash))
-        
+
 
