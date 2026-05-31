@@ -302,11 +302,11 @@ while True:
         current = pot.value
 
         if current > last_value + 1000:
-            cc.send(ConsumerControlCode.VOLUME_INCREMENT)
+            mouse.move(wheel=-1)
 
 
         elif current < last_value - 1000:
-            cc.send(ConsumerControlCode.VOLUME_DECREMENT)
+            mouse.move(wheel=1)
 
 
         last_value = current
