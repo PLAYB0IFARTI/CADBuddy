@@ -47,7 +47,7 @@ HEIGHT = 64
 hotkeys = [
     "EXT", "FLT", "SKC",
     "ACC", "NRM", "ROT",
-    "ACR",   "CPY",   "PST"
+    "ESC",   "CPY",   "PST"
 ]
 
 
